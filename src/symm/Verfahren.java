@@ -20,7 +20,9 @@ public class Verfahren {
     
   }
   
-  
+  public void decrypt(int[] intKryptArray){
+    
+  }
 
 
 
