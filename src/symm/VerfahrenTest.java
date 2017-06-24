@@ -13,8 +13,22 @@ public class VerfahrenTest {
     for(int i =0; i<t.length; i++){
       System.out.println(t[i]);
     }
-    
-    
+    int[] abc = test.convertToInt("abc");
+    for(int i =0; i<abc.length; i++){
+      System.out.println(abc[i]);
+    }
+    int[] abcShould = {65,66,67};
+    assertArrayEquals(abcShould, abc);
+  }
+  
+  @Test
+  public void testEncrypt(){
+	
+  }
+  
+  @Test 
+  public void testDecrypt(){
+	  
   }
 
 }
