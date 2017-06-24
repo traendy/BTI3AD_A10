@@ -23,7 +23,16 @@ public class VerfahrenTest {
   
   @Test
   public void testEncrypt(){
-	
+	Verfahren test = new Verfahren();
+	String clear = "geile Verschluesselung";
+	System.out.println(clear);
+	String unclear = test.encrypt2(clear);
+	int[] krypt = test.encrypt(clear);
+	String unkrypt = test.decrypt(krypt);
+	System.out.println(unclear);
+	String clear2 = test.decrypt2(unclear);
+	System.out.println(clear2);
+	System.out.println(unkrypt);
   }
   
   @Test 

@@ -4,6 +4,11 @@ public class Verfahren {
 	static final int NUM = 95;
 	static final int OFFSET = 8;
 
+	
+	public String encrypt2(String msg){
+		int[] intKryptArray = encrypt(msg);
+		return convertToString(intKryptArray);
+	}
 	public int[] encrypt(String msg) {
 		int[] intClearArray = convertToInt(msg);
 		int skey0 = SessionKeyGenerator.getSessionKey();
@@ -16,9 +21,9 @@ public class Verfahren {
 		intKryptArray[1] = skey1;
 		for (int i = 0; i < intClearArray.length; i++) {
 			if (i % 2 == 0) {
-				intKryptArray[i + OFFSET] = (intClearArray[i] + skey1) % NUM;
-			} else {
 				intKryptArray[i + OFFSET] = (intClearArray[i] + skey0) % NUM;
+			} else {
+				intKryptArray[i + OFFSET] = (intClearArray[i] + skey1) % NUM;
 			}
 
 		}
@@ -26,6 +31,11 @@ public class Verfahren {
 
 	}
 
+	public String decrypt2(String msg){
+		int[] intKryptArray = convertToInt(msg);
+		return decrypt(intKryptArray);
+	}
+	
 	public String decrypt(int[] intKryptArray) {
 		int msgLen = intKryptArray.length - OFFSET;
 		int[] intClearArray = new int[msgLen];
@@ -44,12 +54,11 @@ public class Verfahren {
 
 	public static final int INT2CHAR = 32;
 
-	public int[] convertToInt(String str) {
-		int[] temp = new int[str.length()];
-		int i = 0;
-		for (char c : str.toCharArray()) {
-			temp[i] = (int) (c - INT2CHAR);
-			i++;
+	public int[] convertToInt(String str) {	
+		char[] cArr = str.toCharArray();
+		int[] temp = new int[cArr.length];
+		for (int i =0; i < temp.length; i++){
+			temp[i]= (int)(cArr[i] - INT2CHAR);
 		}
 		return temp;
 	}
