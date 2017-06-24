@@ -10,6 +10,5 @@ public class PublicKey {
       e++;
     }
     return e;
-    
   }
 }

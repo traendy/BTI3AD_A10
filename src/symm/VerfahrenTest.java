@@ -22,7 +22,7 @@ public class VerfahrenTest {
   }
   
   @Test
-  public void testEncrypt(){
+  public void testCrypt(){
 	Verfahren test = new Verfahren();
 	String clear = "geile Verschluesselung";
 	System.out.println(clear);
@@ -33,11 +33,9 @@ public class VerfahrenTest {
 	String clear2 = test.decrypt2(unclear);
 	System.out.println(clear2);
 	System.out.println(unkrypt);
-  }
-  
-  @Test 
-  public void testDecrypt(){
-	  
+	assertEquals(clear, unkrypt);
+	assertEquals(clear,clear2);
+	assertNotEquals(clear,unclear);	
   }
 
 }

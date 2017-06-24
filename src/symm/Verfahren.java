@@ -25,10 +25,8 @@ public class Verfahren {
 			} else {
 				intKryptArray[i + OFFSET] = (intClearArray[i] + skey1) % NUM;
 			}
-
 		}
 		return intKryptArray;
-
 	}
 
 	public String decrypt2(String msg){
