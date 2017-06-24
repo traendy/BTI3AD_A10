@@ -18,7 +18,7 @@ public class RSAVerfahren {
     int hauptmodul = getHauptModul(p, q); //N = p*q
     //e ist entweder private  oder public key
     int e = PublicKey.getPublicKey(nebenModul);
-    int d = PrivateKey.getPrivateKey(e, nebenModul);
+    int d = PrivateKey.getPriKey(e, nebenModul);
     publicKey = e;
     privateKey = d;
     rsaModul = hauptmodul;  
@@ -40,6 +40,10 @@ public class RSAVerfahren {
   }
   
   
+  public int encrypt(int intClear, int publicKey, int rsaModul ){
+	  return encrypt(new int[] {intClear}, publicKey, rsaModul)[0];
+  }
+  
   public int[] encrypt(int[] intClearArray, int publicKey, int rsaModul){
 	  int len = intClearArray.length;
 	  int[] intKryptArray = new int[len];
@@ -51,6 +55,9 @@ public class RSAVerfahren {
         intKryptArray[i]= bigClearInt.modPow(bigExpo, bigRsaMod).intValue();
 	  }
 	  return intKryptArray;
+  }
+  public int decrypt(int intKrypt){
+	  return decrypt(new int[] {intKrypt})[0];
   }
   
   public int[] decrypt(int[] intKryptArray){

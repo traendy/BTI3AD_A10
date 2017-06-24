@@ -18,5 +18,16 @@ public class PrivateKey {
     }
     return d;
   }
+  
+  // BRUTFORCE 
+  public static int getPriKey(int publicKey, int nebenModul){
+	  int d = 2;
+	  int res = 0;
+	  do{
+		  d++;
+		  res = (publicKey * d)% nebenModul;
+	  } while (res != 1);
+	  return d;
+  }
 
 }

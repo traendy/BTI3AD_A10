@@ -1,9 +1,10 @@
 package symm;
 
-public class Verfahren {
-	static final int NUM = 95;
-	static final int OFFSET = 8;
+public class BlockVerfahren {
+	public static final int MODNUM = 95;
+	public static final int OFFSET = 8;
 
+	
 	
 	public String encrypt2(String msg){
 		int[] intKryptArray = encrypt(msg);
@@ -21,9 +22,9 @@ public class Verfahren {
 		intKryptArray[1] = skey1;
 		for (int i = 0; i < intClearArray.length; i++) {
 			if (i % 2 == 0) {
-				intKryptArray[i + OFFSET] = (intClearArray[i] + skey0) % NUM;
+				intKryptArray[i + OFFSET] = (intClearArray[i] + skey0) % MODNUM;
 			} else {
-				intKryptArray[i + OFFSET] = (intClearArray[i] + skey1) % NUM;
+				intKryptArray[i + OFFSET] = (intClearArray[i] + skey1) % MODNUM;
 			}
 		}
 		return intKryptArray;
@@ -42,9 +43,9 @@ public class Verfahren {
 
 		for (int i = 0; i < msgLen; i++) {
 			if (i % 2 == 0) {
-				intClearArray[i] = (intKryptArray[i + OFFSET] + (NUM - skey0)) % NUM;
+				intClearArray[i] = (intKryptArray[i + OFFSET] + (MODNUM - skey0)) % MODNUM;
 			} else {
-				intClearArray[i] = (intKryptArray[i + OFFSET] + (NUM - skey1)) % NUM;
+				intClearArray[i] = (intKryptArray[i + OFFSET] + (MODNUM - skey1)) % MODNUM;
 			}
 		}
 		return convertToString(intClearArray);
