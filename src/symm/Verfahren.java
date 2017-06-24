@@ -11,9 +11,9 @@ public class Verfahren {
     intKryptArray[1] = skey1;
     for(int i =0; i<intClearArray.length; i++){
       if(i%2==0){
-        intKryptArray[i+8]=intClearArray[i]+skey1%95;
+        intKryptArray[i+8]=(intClearArray[i]+skey1)%95;
       }else {
-        intKryptArray[i+8]=intClearArray[i]+skey0%95;
+        intKryptArray[i+8]=(intClearArray[i]+skey0)%95;
       }
       
     }
