@@ -61,16 +61,23 @@ public class Main {
     String str= "";
     HybridVerfahren hybridVerfahren = new HybridVerfahren();
     if(mode== 1){
+      
+      int pub = hybridVerfahren.getPublicKey();
+      int modul  = hybridVerfahren.getRsaModul();
+      System.out.println("Dies ist der pub key: " +pub);
+      System.out.println("Dies ist das modul: " + modul);
       System.out.println("Gib den Text ein den du entschlüsseln willst.");
       str = scanner.nextLine();
       System.out.println(hybridVerfahren.decrypt(str));
     }else{
       System.out.println("Gib den Text ein den du verschlüsseln willst.");
       str = scanner.nextLine();
-       int pubKey = hybridVerfahren.getPublicKey();
-      
-      System.out.println(hybridVerfahren.encrypt(str, pubKey, hybridVerfahren.getRsaModul()));
-      System.out.println("Publik Key ist: "+ pubKey);
+      System.out.println("Gib den key ein: ");
+       int pubKey = scanner.nextInt();
+       System.out.println("Gib das Modul an:");
+      int modul = scanner.nextInt();
+      System.out.println(hybridVerfahren.encrypt(str, pubKey, modul));
+
     }
     
   }
@@ -80,26 +87,30 @@ public class Main {
    String str = "";
    RSAVerfahren rsaVerfahren = new RSAVerfahren();
    rsaVerfahren.unsymmVerfahren();
+   
+   BlockVerfahren vBlock = new BlockVerfahren();
    if(mode ==1){
+     int pub = rsaVerfahren.getPublicKey();
+     int modul  = rsaVerfahren.getRsaModul();
+     System.out.println("Dies ist der pub key: " +pub);
+     System.out.println("Dies ist das modul: " + modul);
+     
      System.out.println("Gib den Text ein den du entschlüsseln willst.");
      str = scanner.nextLine();
-     char [] tmp = str.toCharArray();
-     int[] tmpint = new int[tmp.length];
-     for(int i =0 ; i<tmp.length; i++){
-       tmpint[i] = (int)tmp[i];
-     }
+     int[] tmpint = vBlock.convertToInt(str);
+   
      System.out.println(rsaVerfahren.decrypt(tmpint));
+    
    }else{
      System.out.println("Gib den Text ein den du verschlüsseln willst.");
      str = scanner.nextLine();
-     int pubKey = rsaVerfahren.getPublicKey();
-     char [] tmp = str.toCharArray();
-     int[] tmpint = new int[tmp.length];
-     for(int i =0 ; i<tmp.length; i++){
-       tmpint[i] = (int)tmp[i];
-     }
-     System.out.println(rsaVerfahren.encrypt(tmpint, pubKey, rsaVerfahren.getRsaModul()));
-     System.out.println("Publik Key ist: "+ pubKey);
+     int[] tmpint = vBlock.convertToInt(str);
+     System.out.println("Gib den key ein: ");
+     int pubKey = scanner.nextInt();
+     System.out.println("Gib das Modul an:");
+     int modul = scanner.nextInt();
+     System.out.println(rsaVerfahren.encrypt(tmpint, pubKey, modul));
+  
    }
    
  
@@ -116,9 +127,11 @@ public class Main {
     }else{
       System.out.println("Gib den Text ein den du verschlüsseln willst.");
       str = scanner.nextLine();
-   
+
+      
       
       System.out.println(blockVerfahren.encrypt(str));
+    
   
     }
 

@@ -35,6 +35,10 @@ public class RSAVerfahren {
 	  return rsaModul;
   }
   
+  public void setRsaModul(int modul){
+    this.rsaModul = modul;
+  }
+  
   public int getPublicKey(){
 	  return publicKey;
   }
@@ -45,6 +49,8 @@ public class RSAVerfahren {
   }
   
   public int[] encrypt(int[] intClearArray, int publicKey, int rsaModul){
+    this.publicKey = publicKey;
+    this.rsaModul = rsaModul;
 	  int len = intClearArray.length;
 	  int[] intKryptArray = new int[len];
 	  BigInteger bigExpo = BigInteger.valueOf(publicKey);

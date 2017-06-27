@@ -19,6 +19,7 @@ public class RSATest {
 		int pubKey = rsa.getPublicKey();
 		int rsaMod = rsa.getRsaModul();
 		int[] krypt = rsa.encrypt(clearInt, pubKey, rsaMod)	;
+		
 		int[] dekry = rsa.decrypt(krypt);
 		String kryptS = v.convertToString(krypt);
 		String dekryS = v.convertToString(dekry);
