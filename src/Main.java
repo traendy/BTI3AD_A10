@@ -85,10 +85,11 @@ public class Main {
   private static void unsymm(int mode) {
    Scanner scanner = new Scanner(System.in);
    String str = "";
+
+   BlockVerfahren vBlock = new BlockVerfahren();
    RSAVerfahren rsaVerfahren = new RSAVerfahren();
    rsaVerfahren.unsymmVerfahren();
    
-   BlockVerfahren vBlock = new BlockVerfahren();
    if(mode ==1){
      int pub = rsaVerfahren.getPublicKey();
      int modul  = rsaVerfahren.getRsaModul();
@@ -97,9 +98,21 @@ public class Main {
      
      System.out.println("Gib den Text ein den du entschlüsseln willst.");
      str = scanner.nextLine();
-     int[] tmpint = vBlock.convertToInt(str);
-   
-     System.out.println(rsaVerfahren.decrypt(tmpint));
+     //erstelle ein int array aus der eingabe
+     String[] array = str.split(", ");
+     int[] tmpint = new int[array.length];
+     for(int i =0; i<array.length; i++){
+       tmpint[i]= Integer.valueOf(array[i].trim());
+     }
+     
+     StringBuilder sb = new StringBuilder();
+     tmpint = rsaVerfahren.decrypt(tmpint);
+     
+     for(int i =0; i<tmpint.length; i++){
+       sb.append(tmpint[i]);
+     }
+    // System.out.println(sb.toString());
+     System.out.println(vBlock.convertToString(tmpint));
     
    }else{
      System.out.println("Gib den Text ein den du verschlüsseln willst.");
@@ -109,8 +122,13 @@ public class Main {
      int pubKey = scanner.nextInt();
      System.out.println("Gib das Modul an:");
      int modul = scanner.nextInt();
-     System.out.println(rsaVerfahren.encrypt(tmpint, pubKey, modul));
-  
+     tmpint= rsaVerfahren.encrypt(tmpint, pubKey, modul);
+     StringBuilder sb = new StringBuilder();
+     for(int i =0; i<tmpint.length; i++){
+       sb.append(tmpint[i]);
+       if(i!=tmpint.length-1) sb.append(", ");
+     }
+     System.out.println(sb.toString());
    }
    
  
@@ -123,14 +141,21 @@ public class Main {
     if(mode== 1){
       System.out.println("Gib den Text ein den du entschlüsseln willst.");
       str = scanner.nextLine();
-      System.out.println(blockVerfahren.decrypt2(str));
+      String[] array = str.split(" ");
+      int[] tmpint = new int[array.length];
+      for(int i =0; i<array.length; i++){
+        tmpint[i]= Integer.valueOf(array[i].trim());
+      }
+      System.out.println(blockVerfahren.decrypt(tmpint));
     }else{
       System.out.println("Gib den Text ein den du verschlüsseln willst.");
       str = scanner.nextLine();
-
-      
-      
-      System.out.println(blockVerfahren.encrypt(str));
+      int[] tmpint = blockVerfahren.encrypt(str);
+      StringBuilder sb = new StringBuilder();
+      for(int i =0; i < tmpint.length; i++){
+        sb.append(String.valueOf(tmpint[i])).append(" ");
+      }
+      System.out.println(sb.toString());
     
   
     }
